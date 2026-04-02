@@ -325,8 +325,8 @@ const PhotoGallery = ({
                         {loadState === "loaded"
                           ? "Available"
                           : loadState === "loading"
-                          ? "Loading..."
-                          : "Error"}
+                            ? "Loading..."
+                            : "Error"}
                       </Badge>
                       <span className="text-xs text-muted-foreground truncate max-w-[100px]">
                         {photo.size && `${Math.round(photo.size / 1024)} KB`}
@@ -396,14 +396,14 @@ const GuestDetailsView = () => {
       try {
         console.log("📡 Fetching guest from API with ID:", id);
         setLoading(true);
-        const response = await axios.get(
-          `http://localhost:5000/api/guests/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("hotelToken")}`,
-            },
-          }
-        );
+        // ✅ Fix
+        const BASE_URL =
+          import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const response = await axios.get(`${BASE_URL}/api/guests/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("hotelToken")}`,
+          },
+        });
         console.log("✅ Guest fetched successfully:", response.data);
         setGuest(response.data.data || response.data);
       } catch (error) {
