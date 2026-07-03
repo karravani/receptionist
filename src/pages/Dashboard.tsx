@@ -90,7 +90,7 @@ export default function Dashboard() {
           (guest.phone && guest.phone.includes(searchLower)) ||
           (guest.referenceNumber &&
             guest.referenceNumber.toLowerCase().includes(searchLower)) ||
-          (guest.email && guest.email.toLowerCase().includes(searchLower))
+          (guest.email && guest.email.toLowerCase().includes(searchLower)),
       );
     }
 
@@ -104,7 +104,7 @@ export default function Dashboard() {
       filtered = filtered.filter(
         (guest) =>
           guest.nationality &&
-          guest.nationality.toLowerCase() === filters.nationality.toLowerCase()
+          guest.nationality.toLowerCase() === filters.nationality.toLowerCase(),
       );
     }
 
@@ -112,14 +112,14 @@ export default function Dashboard() {
     if (filters.roomNumber) {
       filtered = filtered.filter(
         (guest) =>
-          guest.roomNumber && guest.roomNumber.includes(filters.roomNumber)
+          guest.roomNumber && guest.roomNumber.includes(filters.roomNumber),
       );
     }
 
     // Check-in date filter
     if (filters.checkInDate) {
       filtered = filtered.filter(
-        (guest) => guest.checkInDate === filters.checkInDate
+        (guest) => guest.checkInDate === filters.checkInDate,
       );
     }
 
@@ -201,7 +201,7 @@ export default function Dashboard() {
       : 0,
     occupancyRate: Array.isArray(guests)
       ? Math.round(
-          (guests.filter((g) => g.status === "checked-in").length / 50) * 100
+          (guests.filter((g) => g.status === "checked-in").length / 50) * 100,
         )
       : 0, // Assuming 50 total rooms
   };
@@ -253,14 +253,12 @@ export default function Dashboard() {
           title="Total Guests"
           value={stats.totalGuests}
           icon={Users}
-          trend={{ value: 12, isPositive: true }}
         />
         <StatsCard
           title="Checked In"
           value={stats.checkedIn}
           icon={UserPlus}
           variant="success"
-          trend={{ value: 8, isPositive: true }}
         />
         <StatsCard
           title="Checked Out"

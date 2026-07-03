@@ -2,7 +2,7 @@
 import axios from "axios";
 import { Guest } from "@/components/dashboard/GuestTable";
 
-const API_BASE = "https://safecheckin-backend-1.onrender.com/api/guests";
+const API_BASE = `${import.meta.env.VITE_API_URL ?? "http://localhost:5000"}/api/guests`;
 
 // Create axios instance with default config
 const api = axios.create({
